@@ -31,13 +31,27 @@
     img {
       width: 100%;
     }
+
+    button {
+      display: flex;
+    }
+
+    .valgt {
+      background-color: brown;
+    }
   </style>
   <body>
     <section>
       <header>
         <img src="" alt="" />
       </header>
-      <nav></nav>
+      <nav>
+        <button data-kategoti="alt" class="valgt">Alt</button>
+        <button data-kategoti="forretter">Forretter</button>
+        <button data-kategoti="hovedretter">Hovedretter</button>
+        <button data-kategoti="desserter">Desserter</button>
+        <button data-kategoti="drikkevarer">Drikkevarer</button>
+      </nav>
     </section>
     <h2>Menu</h2>
     <section id="maden">
@@ -73,6 +87,24 @@
     }
 
     henData();
+    // Her prøver jeg lige at lave knapper
+
+    let kategorier;
+    let filter = "alt";
+
+    // Skal måske være under functionstart
+    const filterKnapper = document.querySelectorAll("nav button");
+    filterKnapper.forEach((knap) => knap.addEventListener("click", filtrerKategorier));
+    // loadJSON();
+
+function filtrerKategorier() {
+  filter = this.dataset.kategorier;
+}
+
+// VisPersoner(); ????
+
+
+
 
     const main = document.querySelector("#maden");
     const template = document.querySelector("template").content;
