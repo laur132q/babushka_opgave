@@ -82,12 +82,15 @@
       json.forEach((retter) => {
         const klon = template.cloneNode(true);
 
-        klon.querySelector(".billedeurl").src = retter.billede;
+        klon.querySelector(".billedeurl").src =
+          "images/" + retter.billednavn + "-md.jpg";
         klon.querySelector(".navn").textContent = retter.navn;
         klon.querySelector(".kortbeskrivelse").textContent =
           retter.kortbeskrivelse;
         klon.querySelector(".pris").textContent = retter.pris;
         main.appendChild(klon);
+
+        // images\baltiskbondesuppe-md.jpg
       });
     }
   </script>
