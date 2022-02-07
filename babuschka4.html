@@ -45,6 +45,7 @@
       <header>
         <img src="" alt="" />
       </header>
+      <h1 id="what">Alt</h1>
       <nav>
         <button data-kategoti="alt" class="valgt">Alt</button>
         <button data-kategoti="forretter">Forretter</button>
@@ -76,11 +77,17 @@
       },
     };
 
+    let json;
+    let myKatogri = "alt";
+
+    const main = document.querySelector("#maden");
+    const template = document.querySelector("template").content;
+    const header = document.querySelector("#what");
+
     // OKAY OKAY!! Så nede i min asynkrone funktion henter jeg altså både
     // min nøgle og mit link og venter på at det et hentet så jeg kan vise det
     document.addEventListener("DOMContentLoaded", start);
-    let json;
-    let myKatogri = "alt";
+
     function start() {
       console.log("start");
       const filterKnapper = document.querySelectorAll("nav button");
@@ -96,18 +103,18 @@
 
       henData();
     }
+
     function filtrerKategorier() {
       console.log("filtrerKategorier");
       let klikketPaa = this.dataset.kategoti;
       console.log("klikketPaa :" + klikketPaa);
       vis(json, klikketPaa);
     }
-    const main = document.querySelector("#maden");
-    const template = document.querySelector("template").content;
 
     function vis(json, x) {
       console.log(json);
       main.textContent = "";
+
       json.forEach((retter) => {
         if (retter.kategori == x || x == "alt") {
           const klon = template.cloneNode(true);
