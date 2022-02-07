@@ -79,26 +79,37 @@
     // OKAY OKAY!! Så nede i min asynkrone funktion henter jeg altså både
     // min nøgle og mit link og venter på at det et hentet så jeg kan vise det
     document.addEventListener("DOMContentLoaded", start);
-
+    let json;
+    let myKatogri = "alt";
     function start() {
+      console.log("start");
+      const filterKnapper = document.querySelectorAll("nav button");
+      filterKnapper.forEach((knap) =>
+        knap.addEventListener("click", filtrerKategorier)
+      );
+
       async function henData() {
         const resspons = await fetch(url, options);
-        const json = await resspons.json();
-        vis(json);
-      }
-
-      function vis(json) {
-        console.log(json);
+        json = await resspons.json();
+        vis(json, myKatogri);
       }
 
       henData();
+    }
+    function filtrerKategorier() {
+      console.log("filtrerKategorier");
+      let klikketPaa = this.dataset.kategoti;
+      console.log("klikketPaa :" + klikketPaa);
+      vis(json, klikketPaa);
+    }
+    const main = document.querySelector("#maden");
+    const template = document.querySelector("template").content;
 
-      const main = document.querySelector("#maden");
-      const template = document.querySelector("template").content;
-
-      function vis(json) {
-        console.log(json);
-        json.forEach((retter) => {
+    function vis(json, x) {
+      console.log(json);
+      main.textContent = "";
+      json.forEach((retter) => {
+        if (retter.kategori == x || x == "alt") {
           const klon = template.cloneNode(true);
 
           klon.querySelector(".billedeurl").src =
@@ -108,8 +119,9 @@
             retter.kortbeskrivelse;
           klon.querySelector(".pris").textContent = retter.pris;
           main.appendChild(klon);
-        });
-      }
+        }
+      });
+      console.log(myKatogri);
     }
   </script>
 </html>
