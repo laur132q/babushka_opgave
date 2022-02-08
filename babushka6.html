@@ -58,10 +58,13 @@
       <article>
         <img src="" alt="" />
         <h2></h2>
-        <p></p>
-        <p></p>
+        <p class="kortbeskrivelse"></p>
+        <p class="langbeskrivelse"></p>
+        <p class="oprindelsesregion"></p>
+        <p class="pris"></p>
       </article>
     </aside>
+
     <section>
       <header>
         <img src="" alt="" />
@@ -153,12 +156,12 @@
           klon.querySelector(".kortbeskrivelse").textContent =
             retter.kortbeskrivelse;
           klon.querySelector(".pris").textContent = retter.pris;
-          //   klon
-          //     .querySelector("article")
-          //     .addEventListener("click", () => visDetaljer(retter));
           klon.querySelector("article").addEventListener("click", () => {
-            location.href = `retSingleView.html?id=${retter._id}`;
+            visDetaljer(retter);
           });
+          // klon.querySelector("article").addEventListener("click", () => {
+          //   location.href = `retSingleView.html?id=${retter._id}`;
+          // };
           main.appendChild(klon);
         }
       });
@@ -166,13 +169,20 @@
       console.log(myKatogri);
     }
 
-    // function visDetaljer(retter) {
-    //   console.log("visDetajler" + retter);
-    //   modal.querySelector("h2").textContent = retter.navn;
-    //   modal.querySelector("img").src =
-    //     "images/" + retter.billednavn + "-md.jpg";
-    //   modal.style.display = "block";
-    //   modal.addEventListener("click", () => (modal.style.display = "none"));
-    // }
+    function visDetaljer(retter) {
+      console.log("visDetajler" + retter);
+      modal.querySelector("h2").textContent = retter.navn;
+      modal.querySelector("img").src =
+        "images/" + retter.billednavn + "-md.jpg";
+      modal.querySelector(".kortbeskrivelse").textContent =
+        retter.kortbeskrivelse;
+      modal.querySelector(".langbeskrivelse").textContent =
+        retter.langbeskrivelse;
+      modal.querySelector(".oprindelsesregion").textContent =
+        retter.oprindelsesregion;
+      modal.querySelector(".pris").textContent = retter.pris;
+      modal.style.display = "block";
+      modal.addEventListener("click", () => (modal.style.display = "none"));
+    }
   </script>
 </html>
