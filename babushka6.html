@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+
+  <style>
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 5px;
+    }
+    article {
+      border-style: solid;
+    }
+    h2 {
+      margin: 1.5rem;
+    }
+
+    p {
+      margin: 1.5rem;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    button {
+    }
+
+    .valgt {
+      background-color: brown;
+    }
+
+    #modal {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      background-color: black;
+      position: fixed;
+    }
+
+    #modal article {
+      max-width: 900px;
+      margin: 2em auto;
+      background-color: blanchedalmond;
+    }
+  </style>
+  <body>
+    <aside id="modal">
+      <article>
+        <img src="" alt="" />
+        <h2></h2>
+        <p></p>
+        <p></p>
+      </article>
+    </aside>
+    <section>
+      <header>
+        <img src="" alt="" />
+        <h1 id="what">Alt</h1>
+      </header>
+    </section>
+    <section>
+      <nav>
+        <button data-kategori="alt" class="valgt">Alt</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="desserter">Desserter</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
+      </nav>
+    </section>
+    <section></section>
+    <h2>Menu</h2>
+    <section id="maden">
+      <template>
+        <article>
+          <img src="" alt="" class="billedeurl" />
+          <h2 class="navn"></h2>
+          <p class="kortbeskrivelse"></p>
+          <p class="pris"></p>
+        </article>
+      </template>
+    </section>
+  </body>
+  <script>
+    const url = "https://babushka-dd8a.restdb.io/rest/menu";
+    // settings, test data, tag link, husk at fjerne max
+    // key = database, API keys, manage dem --> Selve nøglen
+
+    const options = {
+      headers: {
+        "x-apikey": "600ec2fb1346a1524ff12de4",
+      },
+    };
+
+    let json;
+    let myKatogri = "alt";
+
+    const main = document.querySelector("#maden");
+    const template = document.querySelector("template").content;
+    const header = document.querySelector("#what");
+    const modal = document.querySelector("#modal");
+    // OKAY OKAY!! Så nede i min asynkrone funktion henter jeg altså både
+    // min nøgle og mit link og venter på at det et hentet så jeg kan vise det
+    document.addEventListener("DOMContentLoaded", start);
+
+    function start() {
+      console.log("start");
+      const filterKnapper = document.querySelectorAll("nav button");
+      filterKnapper.forEach((knap) =>
+        knap.addEventListener("click", filtrerKategorier)
+      );
+
+      async function henData() {
+        const resspons = await fetch(url, options);
+        json = await resspons.json();
+        vis(json, myKatogri);
+      }
+
+      henData();
+    }
+
+    function filtrerKategorier() {
+      console.log("filtrerKategorier");
+      let klikketPaa = this.dataset.kategori;
+      console.log("klikketPaa :" + klikketPaa);
+      document.querySelector(".valgt").classList.remove("valgt");
+      this.classList.add("valgt");
+
+      header.textContent = this.textContent;
+      vis(json, klikketPaa);
+    }
+
+    function vis(json, x) {
+      console.log(json);
+
+      main.textContent = "";
+      json.forEach((retter) => {
+        if (retter.kategori == x || x == "alt") {
+          const klon = template.cloneNode(true);
+
+          klon.querySelector(".billedeurl").src =
+            "images/" + retter.billednavn + "-md.jpg";
+          klon.querySelector(".navn").textContent = retter.navn;
+          klon.querySelector(".kortbeskrivelse").textContent =
+            retter.kortbeskrivelse;
+          klon.querySelector(".pris").textContent = retter.pris;
+          //   klon
+          //     .querySelector("article")
+          //     .addEventListener("click", () => visDetaljer(retter));
+          klon.querySelector("article").addEventListener("click", () => {
+            location.href = `retSingleView.html?id=${retter._id}`;
+          });
+          main.appendChild(klon);
+        }
+      });
+
+      console.log(myKatogri);
+    }
+
+    // function visDetaljer(retter) {
+    //   console.log("visDetajler" + retter);
+    //   modal.querySelector("h2").textContent = retter.navn;
+    //   modal.querySelector("img").src =
+    //     "images/" + retter.billednavn + "-md.jpg";
+    //   modal.style.display = "block";
+    //   modal.addEventListener("click", () => (modal.style.display = "none"));
+    // }
+  </script>
+</html>
