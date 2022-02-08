@@ -33,7 +33,6 @@
     }
 
     button {
-      display: flex;
     }
 
     .valgt {
@@ -44,39 +43,41 @@
       width: 100vw;
       height: 100vh;
       display: none;
-      background-color: white;
+      background-color: black;
+      position: fixed;
     }
 
     #modal article {
       max-width: 900px;
-      height: 2re, auto;
+      margin: 2em auto;
       background-color: blanchedalmond;
     }
   </style>
   <body>
+    <aside id="modal">
+      <article>
+        <img src="" alt="" />
+        <h2></h2>
+        <p></p>
+        <p></p>
+      </article>
+    </aside>
     <section>
       <header>
         <img src="" alt="" />
+        <h1 id="what">Alt</h1>
       </header>
-      <h1 id="what">Alt</h1>
-      <nav>
-        <button data-kategoti="alt" class="valgt">Alt</button>
-        <button data-kategoti="forretter">Forretter</button>
-        <button data-kategoti="hovedretter">Hovedretter</button>
-        <button data-kategoti="desserter">Desserter</button>
-        <button data-kategoti="drikkevarer">Drikkevarer</button>
-      </nav>
-
-      <aside id="modal">
-        <article>
-          <h2>
-            <img src="" alt="" />
-            <p></p>
-            <p></p>
-          </h2>
-        </article>
-      </aside>
     </section>
+    <section>
+      <nav>
+        <button data-kategori="alt" class="valgt">Alt</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="desserter">Desserter</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
+      </nav>
+    </section>
+    <section></section>
     <h2>Menu</h2>
     <section id="maden">
       <template>
@@ -106,7 +107,7 @@
     const main = document.querySelector("#maden");
     const template = document.querySelector("template").content;
     const header = document.querySelector("#what");
-
+    const modal = document.querySelector("#modal");
     // OKAY OKAY!! Så nede i min asynkrone funktion henter jeg altså både
     // min nøgle og mit link og venter på at det et hentet så jeg kan vise det
     document.addEventListener("DOMContentLoaded", start);
@@ -129,7 +130,7 @@
 
     function filtrerKategorier() {
       console.log("filtrerKategorier");
-      let klikketPaa = this.dataset.kategoti;
+      let klikketPaa = this.dataset.kategori;
       console.log("klikketPaa :" + klikketPaa);
       vis(json, klikketPaa);
     }
@@ -148,10 +149,22 @@
           klon.querySelector(".kortbeskrivelse").textContent =
             retter.kortbeskrivelse;
           klon.querySelector(".pris").textContent = retter.pris;
+          klon
+            .querySelector("article")
+            .addEventListener("click", () => visDetaljer(retter));
           main.appendChild(klon);
         }
       });
       console.log(myKatogri);
+    }
+
+    function visDetaljer(retter) {
+      console.log("visDetajler" + retter);
+      modal.querySelector("h2").textContent = retter.navn;
+      modal.querySelector("img").src =
+        "images/" + retter.billednavn + "-md.jpg";
+      modal.style.display = "block";
+      modal.addEventListener("click", () => (modal.style.display = "none"));
     }
   </script>
 </html>
