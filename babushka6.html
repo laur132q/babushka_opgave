@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="https://use.typekit.net/wve6nnv.css" />
     <meta
       name="viewport"
       content="width=
@@ -12,81 +13,191 @@
   </head>
 
   <style>
-    section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 5px;
-    }
-    article {
-      border-style: solid;
-    }
-    h2 {
-      margin: 1.5rem;
-    }
+        * {
+          box-sizing: border-box;
+        }
+        section {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 8px;
+        }
+        article {
+          border-style: solid;
+          border-radius: 8%;
+        }
 
-    p {
-      margin: 1.5rem;
-    }
+        h1 {
+          margin: 1rem;
+          font-family: modesto-expanded, serif;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 68px;
+          text-align: center;
+        }
+        h2 {
+          margin: 1.5rem;
+          font-family: modesto-expanded, serif;
+          font-weight: 400;
+          font-style: normal;
+          text-align: center;
+        }
+          h3 {
+          margin: 1.5rem;
+          font-family: modesto-expanded, serif;
+          font-weight: 400;
+          font-style: normal;
 
-    img {
-      width: 100%;
-    }
+        }
 
-    button {
-    }
 
-    .valgt {
-      background-color: brown;
-    }
+        p {
+          margin: 1.5rem;
+        }
 
-    #modal {
-      width: 100vw;
-      height: 100vh;
-      display: none;
-      background-color: black;
-      position: fixed;
-    }
+        img {
+          width: 90%;
+          border-radius: 10%;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 1rem;
+          place-content: center;
+          display: flex;
+          place-content: center;
+        }
 
-    #modal article {
-      max-width: 900px;
-      margin: 2em auto;
-      background-color: blanchedalmond;
-    }
+
+
+
+    .button-73 {
+            appearance: none;
+            background-color: #ffffff;
+            border-radius: 40em;
+            border-style: none;
+            box-shadow: #adcfff 0 -12px 6px inset;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-block;
+            display: flex;
+            flex-flow: wrap;
+            gap: 5px;
+            font-family: -apple-system, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.24px;
+            margin: 1rem;
+            outline: none;
+            padding: 1rem 1.3rem;
+            quotes: auto;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.15s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+          }
+
+          .button-73:hover {
+            background-color: #ffc229;
+            box-shadow: #ff6314 0 -6px 8px inset;
+            transform: scale(1.125);
+          }
+
+          .button-73:active {
+            transform: scale(1.025);
+          }
+
+          @media (min-width: 768px) {
+            .button-73 {
+              font-size: 1.5rem;
+              padding: 0.75rem 2rem;
+            }
+          }
+        }
+
+        .valgt {
+            text-decoration: underline;
+        }
+
+        #modal {
+          width: 100vw;
+          height: 100vh;
+          display: none;
+          background-color: #0000005d;
+          position: fixed;
+        }
+
+        #modal article {
+          max-width: 500px;
+          margin: 2em auto;
+          background-color:white;
+        }
+
+
+        nav {
+          display: flex;
+          flex-flow: wrap;
+           place-content: center;
+        }
+
+        body {
+          background-color: rgb(243, 208, 156);
+        }
+        #splash_image {
+          /* height: 300px; */
+          /* overflow: hidden; */
+          background-color:#ff6314;
+          width: 100%;
+        }
+        #headline1{
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 100px;
+        }
+
+        #maden article {
+          background-color: white;
+        }
   </style>
   <body>
     <aside id="modal">
       <article>
         <img src="" alt="" />
-        <h2></h2>
+        <h3></h3>
         <p class="kortbeskrivelse"></p>
         <p class="langbeskrivelse"></p>
         <p class="oprindelsesregion"></p>
         <p class="pris"></p>
       </article>
     </aside>
-
+    <div id="splash_image">
+      <h1   id="headline1">&#9733; BISTRO BABUSHKA &#9733;</h1>
+    </div>
     <section>
       <header>
-        <img src="" alt="" />
-        <h1 id="what">Alt</h1>
+        <h2 id="what">Alt</h1>
       </header>
     </section>
     <section>
       <nav>
-        <button data-kategori="alt" class="valgt">Alt</button>
-        <button data-kategori="forretter">Forretter</button>
-        <button data-kategori="hovedretter">Hovedretter</button>
-        <button data-kategori="desserter">Desserter</button>
-        <button data-kategori="drikkevarer">Drikkevarer</button>
+        <button data-kategori="alt" class="valgt button-73">Alt</button>
+        <button data-kategori="forretter" class="button-73">Forretter</button>
+        <button data-kategori="hovedretter" class="button-73">
+          Hovedretter
+        </button>
+        <button data-kategori="desserter" class="button-73">Desserter</button>
+        <button data-kategori="drikkevarer" class="button-73">
+          Drikkevarer
+        </button>
       </nav>
     </section>
     <section></section>
-    <h2>Menu</h2>
+    <!-- <h2>Menu</h2> -->
     <section id="maden">
       <template>
         <article>
           <img src="" alt="" class="billedeurl" />
-          <h2 class="navn"></h2>
+          <h3 class="navn"></h3>
           <p class="kortbeskrivelse"></p>
           <p class="pris"></p>
         </article>
@@ -155,7 +266,7 @@
           klon.querySelector(".navn").textContent = retter.navn;
           klon.querySelector(".kortbeskrivelse").textContent =
             retter.kortbeskrivelse;
-          klon.querySelector(".pris").textContent = retter.pris;
+          klon.querySelector(".pris").textContent = retter.pris + " kr.";
           klon.querySelector("article").addEventListener("click", () => {
             visDetaljer(retter);
           });
@@ -171,7 +282,7 @@
 
     function visDetaljer(retter) {
       console.log("visDetajler" + retter);
-      modal.querySelector("h2").textContent = retter.navn;
+      modal.querySelector("h3").textContent = retter.navn;
       modal.querySelector("img").src =
         "images/" + retter.billednavn + "-md.jpg";
       modal.querySelector(".kortbeskrivelse").textContent =
@@ -179,8 +290,8 @@
       modal.querySelector(".langbeskrivelse").textContent =
         retter.langbeskrivelse;
       modal.querySelector(".oprindelsesregion").textContent =
-        retter.oprindelsesregion;
-      modal.querySelector(".pris").textContent = retter.pris;
+        "Oprindelsesregion: " + retter.oprindelsesregion;
+      modal.querySelector(".pris").textContent = retter.pris += " kr.";
       modal.style.display = "block";
       modal.addEventListener("click", () => (modal.style.display = "none"));
     }
